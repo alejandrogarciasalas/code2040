@@ -1,30 +1,36 @@
 import requests
 
-def get_string(token):
-	authentication = {
-		'token': token
-	}
-	r = requests.post('http://challenge.code2040.org/api/reverse', json=authentication)
-	return r.text
+
+def get_string(token, request_endpoint):
+    authentication = {
+        'token': token
+    }
+    r = requests.post(request_endpoint	, json=authentication)
+    return r.text
+
 
 def reverse_string(str):
-	return str[::-1]
+    return str[::-1]
 
-def validate(token, str):
-	str = reverse_string(str)
-	solution = {
-		'token': token,
-		'string': str
-	}
-	r = requests.post('http://challenge.code2040.org/api/reverse/validate', json=solution)
-	return r.text
+
+def validate(token, str, validation_endpoint):
+    solution = {
+        'token': token,
+        'string': str
+    }
+    r = requests.post(validation_endpoint, json=solution)
+    return r.text
+
 
 def main():
-	token = '055755d0bef8118fe9960bcf4f12b2be'	
-	s = get_string(token)
-	validation = validate(token, s)
-	print(validation)
+    token = '055755d0bef8118fe9960bcf4f12b2be'
+    request_endpoint = 'http://challenge.code2040.org/api/reverse'
+    validation_endpoint = 'http://challenge.code2040.org/api/reverse/validate'
+    str = get_string(token, request_endpoint)
+    ans = reverse_string(str)
+    validation = validate(token, ans, validation_endpoint)
+    print(validation)
 
 
 if __name__ == "__main__":
-	main()
+    main()
