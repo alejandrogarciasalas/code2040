@@ -27,7 +27,6 @@ def main():
 	prefix, arr = get_prefix_arr(token)
 	ans = get_strings_starting_with_prefix(prefix, arr)
 	validation = validate(token, ans)
-	# print(prefix)
 	print(validation)
 
 
