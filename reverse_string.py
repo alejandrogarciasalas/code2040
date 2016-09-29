@@ -1,8 +1,6 @@
 import requests
 
-token = '055755d0bef8118fe9960bcf4f12b2be'	
-
-def get_string():
+def get_string(token):
 	authentication = {
 		'token': token
 	}
@@ -12,7 +10,7 @@ def get_string():
 def reverse_string(str):
 	return str[::-1]
 
-def validate(str):
+def validate(token, str):
 	str = reverse_string(str)
 	solution = {
 		'token': token,
@@ -22,8 +20,9 @@ def validate(str):
 	return r.text
 
 def main():
-	s = get_string()
-	validation = validate(s)
+	token = '055755d0bef8118fe9960bcf4f12b2be'	
+	s = get_string(token)
+	validation = validate(token, s)
 	print(validation)
 
 
