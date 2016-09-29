@@ -14,11 +14,11 @@ def reverse_string(str):
 
 def validate(str):
 	str = reverse_string(str)
-	data = {
+	solution = {
 		'token': token,
 		'string': str
 	}
-	r = requests.post('http://challenge.code2040.org/api/reverse/validate', json=data)
+	r = requests.post('http://challenge.code2040.org/api/reverse/validate', json=solution)
 	return r.text
 
 def main():
