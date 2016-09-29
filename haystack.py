@@ -1,15 +1,16 @@
 import requests
 
-def get_dict(token):
+def get_needle_haystack(token):
 	authentication = {
 		'token': token
 	}
 	r = requests.post('http://challenge.code2040.org/api/haystack', json=authentication)
-	return r.json()
-
-def get_needle_index(d):
+	d = r.json()
 	needle = d['needle']
 	haystack = d['haystack']
+	return needle, haystack
+
+def get_needle_index(needle, haystack):
 	return haystack.index(needle)
 
 def validate(token, needle_index):
@@ -22,8 +23,8 @@ def validate(token, needle_index):
 
 def main():
 	token = '055755d0bef8118fe9960bcf4f12b2be'	
-	d = get_dict(token)
-	needle_index = get_needle_index(d)
+	needle, haystack = get_needle_haystack(token)
+	needle_index = get_needle_index(needle, haystack)
 	validation = validate(token, needle_index)
 	print(validation)
 
